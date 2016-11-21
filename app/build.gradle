@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "org.homebrew.antpluslistener"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets {
+        main {
+            java {
+                srcDir 'app/java'
+            }
+            resources {
+                srcDir 'src/../lib'
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile files('../Ant+API/antpluginlib_3-5-0.jar')
+}
+
+task deleteJar(type: Delete) {
+    delete 'app/build/outputs/bikeSpdSampler.jar'
+}
+
+task createJar(type: Copy) {
+    from('app/build/intermediates/bundles/release/')
+    into('app/build/outputs/')
+    include('classes.jar')
+    rename('classes.jar', 'bikeSpdSampler.jar')
+}

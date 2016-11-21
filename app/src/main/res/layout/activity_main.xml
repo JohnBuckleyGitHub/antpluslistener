@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="3dp"
+    android:paddingTop="70dp">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_message" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_send"
+        android:onClick="activateSearch" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_listen"
+        android:onClick="momentaryListen" />
+    <TextView
+        android:id="@+id/textView_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_Status7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[status]"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+</LinearLayout>
