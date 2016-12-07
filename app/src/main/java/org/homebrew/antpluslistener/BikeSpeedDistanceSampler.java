@@ -24,7 +24,7 @@ public class BikeSpeedDistanceSampler {
     PccReleaseHandle<AntPlusBikeSpeedDistancePcc> bsdReleaseHandle = null;
     AntPlusBikeCadencePcc bcPcc = null;
     PccReleaseHandle<AntPlusBikeCadencePcc> bcReleaseHandle = null;
-    public HashMap<String, String> resultsMap = new HashMap<String, String>();
+    public HashMap<String, String> resultsMap = new HashMap<>();
     public long estTimestamp = 0;
     public EnumSet<EventFlag> eventFlags = null;
 //    public String eventFlags = "";
@@ -77,6 +77,8 @@ public class BikeSpeedDistanceSampler {
                     });
                 }
             });
+
+
         }
     };
     IDeviceStateChangeReceiver mDeviceStateChangeReceiver = new AntPluginPcc.IDeviceStateChangeReceiver() {
