@@ -1,5 +1,6 @@
 package org.homebrew.antpluslistener;
 
+
 import com.dsi.ant.plugins.antplus.pcc.AntPlusBikeCadencePcc;
 import com.dsi.ant.plugins.antplus.pcc.AntPlusBikeSpeedDistancePcc;
 import com.dsi.ant.plugins.antplus.pcc.AntPlusBikeSpeedDistancePcc.IRawSpeedAndDistanceDataReceiver;
@@ -25,11 +26,17 @@ public class BikeSpeedDistanceSampler {
     AntPlusBikeCadencePcc bcPcc = null;
     PccReleaseHandle<AntPlusBikeCadencePcc> bcReleaseHandle = null;
     public HashMap<String, String> resultsMap = new HashMap<>();
-    public long estTimestamp = 0;
-    public EnumSet<EventFlag> eventFlags = null;
-//    public String eventFlags = "";
-    public double timestampOfLastEvent = 0;
-    public long cumulativeRevolutions = 0;
+    public double convertValue = 0;
+    public long spdEstTimestamp = 0;
+    public double spdSysTimestamp = ((double)System.currentTimeMillis())/1000;
+    public EnumSet<EventFlag> spdEventFlags = null;
+    public double spdTimestampOfLastEvent = 0;
+    public long spdCumulativeRevolutions = 0;
+    public double cadSysTimestamp = ((double)System.currentTimeMillis())/1000;
+    public long cadEstTimestamp = 0;
+    public EnumSet<EventFlag> cadEventFlags = null;
+    public double cadTimestampOfLastEvent = 0;
+    public long cadCumulativeRevolutions = 0;
 
     android.app.Activity activity = new android.app.Activity();
     android.content.Context cont = new android.app.Activity();
@@ -39,16 +46,18 @@ public class BikeSpeedDistanceSampler {
         cont = cont_local;
 
     }
-    public IPluginAccessResultReceiver<AntPlusBikeSpeedDistancePcc> mResultReceiver = new IPluginAccessResultReceiver<AntPlusBikeSpeedDistancePcc>() {
+    public IPluginAccessResultReceiver<AntPlusBikeSpeedDistancePcc> mResultReceiver = new IPluginAccessResultReceiver<AntPlusBikeSpeedDistancePcc>()
+    {
         // Handle the result, connecting to events on success or reporting
         // failure to user.
         @Override
         public void onResultReceived(AntPlusBikeSpeedDistancePcc result,
-                                     RequestAccessResult resultCode, DeviceState initialDeviceState) {
-            resultsMap.put("deviceName", result.getDeviceName());
-            resultsMap.put("deviceState", initialDeviceState.name());
+                                     RequestAccessResult resultCode, DeviceState initialDeviceState)
+        {
+            resultsMap.put("spdDeviceName", result.getDeviceName());
+            resultsMap.put("spdDeviceState", initialDeviceState.name());
             String StrResultCode = resultCode.name();
-            resultsMap.put("resultCode", StrResultCode);
+            resultsMap.put("spdResultCode", StrResultCode);
 
             if (StrResultCode.equals("SUCCESS")) {
                 bsdPcc = result;
@@ -56,8 +65,10 @@ public class BikeSpeedDistanceSampler {
             }
         }
 
-        private void subscribeToEvents() {
-            bsdPcc.subscribeRawSpeedAndDistanceDataEvent(new IRawSpeedAndDistanceDataReceiver() {
+        private void subscribeToEvents()
+        {
+            bsdPcc.subscribeRawSpeedAndDistanceDataEvent(new IRawSpeedAndDistanceDataReceiver()
+            {
                 @Override
                 public void onNewRawSpeedAndDistanceData(final long FestTimestamp,
                                                          final EnumSet<EventFlag> FeventFlags,
@@ -65,20 +76,101 @@ public class BikeSpeedDistanceSampler {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            estTimestamp = FestTimestamp;
-                            eventFlags = FeventFlags;
-                            timestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
-                            cumulativeRevolutions = FcumulativeRevolutions;
-                            resultsMap.put("estTimestamp", String.valueOf(estTimestamp));
-                            resultsMap.put("eventFlags", eventFlags.toString());
-                            resultsMap.put("timestampOfLastEvent", String.valueOf(timestampOfLastEvent));
-                            resultsMap.put("cumulativeRevolutions", String.valueOf(cumulativeRevolutions));
+                            convertValue = (double) System.currentTimeMillis();
+                            spdSysTimestamp = convertValue/1000;
+//                            spdSysTimestamp = (System.currentTimeMillis()).doubleValue().longValue();
+                            spdEstTimestamp = FestTimestamp;
+                            spdEventFlags = FeventFlags;
+                            spdTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
+                            spdCumulativeRevolutions = FcumulativeRevolutions;
+                            resultsMap.put("spdSysTimestamp", String.valueOf(spdSysTimestamp));
+                            resultsMap.put("spdEstTimestamp", String.valueOf(spdEstTimestamp));
+                            resultsMap.put("spdEventFlags", spdEventFlags.toString());
+                            resultsMap.put("spdTimestampOfLastEvent", String.valueOf(spdTimestampOfLastEvent));
+                            resultsMap.put("spdCumulativeRevolutions", String.valueOf(spdCumulativeRevolutions));
                         }
                     });
                 }
             });
+            if (bsdPcc.isSpeedAndCadenceCombinedSensor())
+            {
+                activity.runOnUiThread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        bcReleaseHandle = AntPlusBikeCadencePcc.requestAccess(
+                                activity,
+                                bsdPcc.getAntDeviceNumber(), 0, true,
+                                new IPluginAccessResultReceiver<AntPlusBikeCadencePcc>()
+                                {
+                                    // Handle the result, connecting to events
+                                    // on success or reporting failure to user.
+                                    @Override
+                                    public void onResultReceived(AntPlusBikeCadencePcc result,
+                                                                 RequestAccessResult resultCode,
+                                                                 DeviceState initialDeviceStateCode)
+                                    {
+                                        String StrResultCode = resultCode.name();
+                                        resultsMap.put("cadResultCode", StrResultCode);
+                                        if (StrResultCode.equals("SUCCESS")) {
+                                            bcPcc = result;
+                                            bcPcc.subscribeRawCadenceDataEvent(new AntPlusBikeCadencePcc.IRawCadenceDataReceiver() {
+                                                @Override
+                                                public void onNewRawCadenceData(final long FestTimestamp,
+                                                                                final EnumSet<EventFlag> FeventFlags, final BigDecimal FtimestampOfLastEvent,
+                                                                                final long FcumulativeRevolutions) {
+                                                    activity.runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            convertValue = (double)(System.currentTimeMillis());
+                                                            cadSysTimestamp = convertValue/1000;
+//                                                            cadSysTimestamp = System.currentTimeMillis();
+                                                            cadEstTimestamp = FestTimestamp;
+                                                            cadEventFlags = FeventFlags;
+                                                            cadTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
+                                                            cadCumulativeRevolutions = FcumulativeRevolutions;
+                                                            resultsMap.put("cadSysTimestamp", String.valueOf(cadEstTimestamp));
+                                                            resultsMap.put("cadEstTimestamp", String.valueOf(cadEstTimestamp));
+                                                            resultsMap.put("cadEventFlags", cadEventFlags.toString());
+                                                            resultsMap.put("cadTimestampOfLastEvent", String.valueOf(cadTimestampOfLastEvent));
+                                                            resultsMap.put("cadCumulativeRevolutions", String.valueOf(cadCumulativeRevolutions));
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }
+                                },
+                                // Receives state changes and shows it on the
+                                // status display line
+                                new IDeviceStateChangeReceiver()
+                                {
+                                    @Override
+                                    public void onDeviceStateChange(final DeviceState newDeviceState)
+                                    {
+                                        activity.runOnUiThread(new Runnable()
+                                        {
+                                            @Override
+                                            public void run()
+                                            {
+                                                if (newDeviceState != DeviceState.TRACKING)
+                                                    resultsMap.put("cadDeviceState", newDeviceState.toString());
+                                                if (newDeviceState == DeviceState.DEAD)
+                                                    bcPcc = null;
+                                            }
+                                        });
+
+                                    }
+                                });
+                    }
+                                // Receives state changes and shows it on the
+                                // status display line
 
 
+
+                });
+            }
         }
     };
     IDeviceStateChangeReceiver mDeviceStateChangeReceiver = new AntPluginPcc.IDeviceStateChangeReceiver() {
@@ -106,6 +198,22 @@ public class BikeSpeedDistanceSampler {
 
         bsdReleaseHandle = AntPlusBikeSpeedDistancePcc.requestAccess(activity, cont,
                 mResultReceiver, mDeviceStateChangeReceiver);
+    }
+
+    public void closePcc() {
+        //Close all threads
+        if (bsdPcc != null) {
+            bsdPcc.releaseAccess();
+        }
+        if (bcPcc != null) {
+            bcPcc.releaseAccess();
+        }
+        if (bsdReleaseHandle != null) {
+            bsdReleaseHandle.close();
+        }
+        if (bcReleaseHandle != null) {
+            bcReleaseHandle.close();
+        }
     }
 
 }
