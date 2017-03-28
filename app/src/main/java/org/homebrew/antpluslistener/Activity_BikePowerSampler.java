@@ -112,22 +112,22 @@ public class Activity_BikePowerSampler extends Activity
     public BigDecimal accumulatedWheelPeriod;
     public BigDecimal accumulatedWheelTorque;
 
-    public long crankTorqueEventCount;
-    public long accumulatedCrankTicks;
-    public double accumulatedCrankPeriod;
-    public double accumulatedCrankTorque;
+//    public long crankTorqueEventCount;
+//    public long accumulatedCrankTicks;
+//    public double accumulatedCrankPeriod;
+//    public double accumulatedCrankTorque;
 
-    public long tePsEventCount;
-    public double leftTorqueEff;
-    public double rightTorqueEff;
-    public double separatePedalSmoothnessSupport;
-    public double leftCombSmoothness;
-    public double rightSmoothness;
-
-    public double CtfEventCount;
-    public double InstantaneousSlope;
-    public double AccumulatedTimestamp;
-    public double AccumulatedTorqueTicks;
+//    public long tePsEventCount;
+//    public double leftTorqueEff;
+//    public double rightTorqueEff;
+//    public double separatePedalSmoothnessSupport;
+//    public double leftCombSmoothness;
+//    public double rightSmoothness;
+//
+//    public double CtfEventCount;
+//    public double InstantaneousSlope;
+//    public double AccumulatedTimestamp;
+//    public double AccumulatedTorqueTicks;
 
 //    public String CalibrationId;
 //    public double CalibrationData;
@@ -199,7 +199,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewCalculatedPower(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final BigDecimal FcalculatedPower)
                 {
@@ -208,7 +208,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             calculatedPower = FcalculatedPower;
@@ -275,7 +275,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewCalculatedTorque(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final BigDecimal FcalculatedTorque)
                 {
@@ -284,7 +284,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             calculatedTorque = FcalculatedTorque;
@@ -347,7 +347,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewCalculatedCrankCadence(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final BigDecimal FcalculatedCrankCadence)
                 {
@@ -356,7 +356,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             calculatedCrankCadence = FcalculatedCrankCadence;
@@ -417,7 +417,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewCalculatedWheelSpeed(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final BigDecimal FcalculatedWheelSpeed)
                 {
@@ -426,7 +426,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             calculatedWheelSpeed = FcalculatedWheelSpeed;
@@ -476,7 +476,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewCalculatedWheelDistance(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final BigDecimal FcalculatedWheelDistance)
                 {
@@ -485,7 +485,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             calculatedWheelDistance = FcalculatedWheelDistance;
@@ -536,7 +536,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewInstantaneousCadence(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final DataSource dataSource,
                     final int FinstantaneousCadence)
                 {
@@ -545,7 +545,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
 
@@ -592,7 +592,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewRawPowerOnlyData(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final long FpowerOnlyUpdateEventCount,
                     final int FinstantaneousPower,
                     final long FaccumulatedPower)
@@ -602,7 +602,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             pwrOnlyEventCount = FpowerOnlyUpdateEventCount;
@@ -623,7 +623,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewPedalPowerBalance(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final boolean FrightPedalIndicator,
                     final int FpedalPowerPercentage)
                 {
@@ -632,7 +632,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
 //                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
                             resultsMap.put("rightPedalIndicator", String.valueOf(FrightPedalIndicator));
@@ -651,7 +651,7 @@ public class Activity_BikePowerSampler extends Activity
             {
                 @Override
                 public void onNewRawWheelTorqueData(
-                    final long FestTimestamp, final EnumSet<EventFlag> eventFlags,
+                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
                     final long FwheelTorqueUpdateEventCount,
                     final long FaccumulatedWheelTicks,
                     final BigDecimal FaccumulatedWheelPeriod,
@@ -662,7 +662,7 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            powerEstTimestamp = FestTimestamp;
+                            powerEstTimestamp = estTimestamp;
                             resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
                             wheelTorqueEventCount = FwheelTorqueUpdateEventCount;
                             resultsMap.put("wheelTorqueUpdateEventCount", String.valueOf(FwheelTorqueUpdateEventCount));
@@ -686,141 +686,141 @@ public class Activity_BikePowerSampler extends Activity
                 }
             });
 
-            pwrPcc.subscribeRawCrankTorqueDataEvent(new IRawCrankTorqueDataReceiver()
-            {
-                @Override
-                public void onNewRawCrankTorqueData(
-                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
-                    final long crankTorqueUpdateEventCount,
-                    final long accumulatedCrankTicks,
-                    final BigDecimal accumulatedCrankPeriod,
-                    final BigDecimal accumulatedCrankTorque)
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//            pwrPcc.subscribeRawCrankTorqueDataEvent(new IRawCrankTorqueDataReceiver()
+//            {
+//                @Override
+//                public void onNewRawCrankTorqueData(
+//                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
+//                    final long crankTorqueUpdateEventCount,
+//                    final long accumulatedCrankTicks,
+//                    final BigDecimal accumulatedCrankPeriod,
+//                    final BigDecimal accumulatedCrankTorque)
+//                {
+//                    runOnUiThread(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//
+//                            textView_CrankTorqueEventCount.setText(String
+//                                .valueOf(crankTorqueUpdateEventCount));
+//                            textView_AccumulatedCrankTicks.setText(String
+//                                .valueOf(accumulatedCrankTicks) + " rotations");
+//                            textView_AccumulatedCrankPeriod.setText(accumulatedCrankPeriod
+//                                .toString() + "s");
+//                            textView_AccumulatedCrankTorque.setText(accumulatedCrankTorque
+//                                .toString() + "Nm");
+//                        }
+//                    });
+//                }
+//            });
 
-                            textView_CrankTorqueEventCount.setText(String
-                                .valueOf(crankTorqueUpdateEventCount));
-                            textView_AccumulatedCrankTicks.setText(String
-                                .valueOf(accumulatedCrankTicks) + " rotations");
-                            textView_AccumulatedCrankPeriod.setText(accumulatedCrankPeriod
-                                .toString() + "s");
-                            textView_AccumulatedCrankTorque.setText(accumulatedCrankTorque
-                                .toString() + "Nm");
-                        }
-                    });
-                }
-            });
+//            pwrPcc.subscribeTorqueEffectivenessEvent(new ITorqueEffectivenessReceiver()
+//            {
+//                @Override
+//                public void onNewTorqueEffectiveness(
+//                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
+//                    final long powerOnlyUpdateEventCount,
+//                    final BigDecimal leftTorqueEffectiveness,
+//                    final BigDecimal rightTorqueEffectiveness)
+//                {
+//                    runOnUiThread(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//
+//                            textView_TePsEventCount.setText(String
+//                                .valueOf(powerOnlyUpdateEventCount));
+//
+//                            if (leftTorqueEffectiveness.intValue() != -1)
+//                                textView_LeftTorqueEff.setText(leftTorqueEffectiveness
+//                                    .toString() + "%");
+//                            else
+//                                textView_LeftTorqueEff.setText("N/A");
+//
+//                            if (rightTorqueEffectiveness.intValue() != -1)
+//                                textView_RightTorqueEff.setText(rightTorqueEffectiveness
+//                                    .toString() + "%");
+//                            else
+//                                textView_RightTorqueEff.setText("N/A");
+//                        }
+//                    });
+//                }
+//
+//            });
 
-            pwrPcc.subscribeTorqueEffectivenessEvent(new ITorqueEffectivenessReceiver()
-            {
-                @Override
-                public void onNewTorqueEffectiveness(
-                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
-                    final long powerOnlyUpdateEventCount,
-                    final BigDecimal leftTorqueEffectiveness,
-                    final BigDecimal rightTorqueEffectiveness)
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//            pwrPcc.subscribePedalSmoothnessEvent(new IPedalSmoothnessReceiver()
+//            {
+//                @Override
+//                public void onNewPedalSmoothness(
+//                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
+//                    final long powerOnlyUpdateEventCount,
+//                    final boolean separatePedalSmoothnessSupport,
+//                    final BigDecimal leftOrCombinedPedalSmoothness,
+//                    final BigDecimal rightPedalSmoothness)
+//                {
+//                    runOnUiThread(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//
+//                            textView_TePsEventCount.setText(String
+//                                .valueOf(powerOnlyUpdateEventCount));
+//
+//                            textView_SeparatePedalSmoothnessSupport.setText(String
+//                                .valueOf(separatePedalSmoothnessSupport));
+//
+//                            if (leftOrCombinedPedalSmoothness.intValue() != -1)
+//                                textView_LeftCombSmoothness
+//                                    .setText(leftOrCombinedPedalSmoothness.toString()
+//                                        + "%");
+//                            else
+//                                textView_LeftCombSmoothness.setText("N/A");
+//
+//                            if (rightPedalSmoothness.intValue() != -1)
+//                                textView_RightSmoothness.setText(rightPedalSmoothness
+//                                    .toString() + "%");
+//                            else
+//                                textView_RightSmoothness.setText("N/A");
+//                        }
+//                    });
+//                }
+//            });
 
-                            textView_TePsEventCount.setText(String
-                                .valueOf(powerOnlyUpdateEventCount));
-
-                            if (leftTorqueEffectiveness.intValue() != -1)
-                                textView_LeftTorqueEff.setText(leftTorqueEffectiveness
-                                    .toString() + "%");
-                            else
-                                textView_LeftTorqueEff.setText("N/A");
-
-                            if (rightTorqueEffectiveness.intValue() != -1)
-                                textView_RightTorqueEff.setText(rightTorqueEffectiveness
-                                    .toString() + "%");
-                            else
-                                textView_RightTorqueEff.setText("N/A");
-                        }
-                    });
-                }
-
-            });
-
-            pwrPcc.subscribePedalSmoothnessEvent(new IPedalSmoothnessReceiver()
-            {
-                @Override
-                public void onNewPedalSmoothness(
-                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
-                    final long powerOnlyUpdateEventCount,
-                    final boolean separatePedalSmoothnessSupport,
-                    final BigDecimal leftOrCombinedPedalSmoothness,
-                    final BigDecimal rightPedalSmoothness)
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-
-                            textView_TePsEventCount.setText(String
-                                .valueOf(powerOnlyUpdateEventCount));
-
-                            textView_SeparatePedalSmoothnessSupport.setText(String
-                                .valueOf(separatePedalSmoothnessSupport));
-
-                            if (leftOrCombinedPedalSmoothness.intValue() != -1)
-                                textView_LeftCombSmoothness
-                                    .setText(leftOrCombinedPedalSmoothness.toString()
-                                        + "%");
-                            else
-                                textView_LeftCombSmoothness.setText("N/A");
-
-                            if (rightPedalSmoothness.intValue() != -1)
-                                textView_RightSmoothness.setText(rightPedalSmoothness
-                                    .toString() + "%");
-                            else
-                                textView_RightSmoothness.setText("N/A");
-                        }
-                    });
-                }
-            });
-
-            pwrPcc.subscribeRawCtfDataEvent(new IRawCtfDataReceiver()
-            {
-                @Override
-                public void onNewRawCtfData(final long estTimestamp,
-                    final EnumSet<EventFlag> eventFlags,
-                    final long ctfUpdateEventCount,
-                    final BigDecimal instantaneousSlope,
-                    final BigDecimal accumulatedTimeStamp,
-                    final long accumulatedTorqueTicksStamp)
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-
-                            textView_CtfEventCount.setText(String
-                                .valueOf(ctfUpdateEventCount));
-                            textView_InstantaneousSlope.setText(instantaneousSlope
-                                .toString() + "Nm/Hz");
-                            textView_AccumulatedTimestamp.setText(accumulatedTimeStamp
-                                .toString() + "s");
-                            textView_AccumulatedTorqueTicks.setText(String
-                                .valueOf(accumulatedTorqueTicksStamp));
-                        }
-                    });
-                }
-            });
+//            pwrPcc.subscribeRawCtfDataEvent(new IRawCtfDataReceiver()
+//            {
+//                @Override
+//                public void onNewRawCtfData(final long estTimestamp,
+//                    final EnumSet<EventFlag> eventFlags,
+//                    final long ctfUpdateEventCount,
+//                    final BigDecimal instantaneousSlope,
+//                    final BigDecimal accumulatedTimeStamp,
+//                    final long accumulatedTorqueTicksStamp)
+//                {
+//                    runOnUiThread(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//
+//                            textView_CtfEventCount.setText(String
+//                                .valueOf(ctfUpdateEventCount));
+//                            textView_InstantaneousSlope.setText(instantaneousSlope
+//                                .toString() + "Nm/Hz");
+//                            textView_AccumulatedTimestamp.setText(accumulatedTimeStamp
+//                                .toString() + "s");
+//                            textView_AccumulatedTorqueTicks.setText(String
+//                                .valueOf(accumulatedTorqueTicksStamp));
+//                        }
+//                    });
+//                }
+//            });
 
             pwrPcc.subscribeCalibrationMessageEvent(new ICalibrationMessageReceiver()
             {
@@ -834,43 +834,55 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-                            textView_CalibrationId.setText(calibrationMessage.calibrationId
-                                .toString());
+                            powerEstTimestamp = estTimestamp;
+                            resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+                            resultsMap.put("calibrationId", String.valueOf(calibrationMessage));
+//                            textView_CalibrationId.setText(calibrationMessage.calibrationId
+//                                .toString());
 
                             switch (calibrationMessage.calibrationId)
                             {
                                 case GENERAL_CALIBRATION_FAIL:
                                 case GENERAL_CALIBRATION_SUCCESS:
-                                    textView_CtfOffset.setText("N/A");
-                                    textView_ManufacturerSpecificBytes.setText("N/A");
-                                    textView_CalibrationData
-                                        .setText(calibrationMessage.calibrationData
-                                            .toString());
+                                    resultsMap.put("ctfOffset", "N/A");
+                                    resultsMap.put("manufacturerSpecificBytes", "N/A");
+                                    resultsMap.put("calibrationData", String.valueOf(calibrationMessage.calibrationData));
+//                                    textView_CtfOffset.setText("N/A");
+//                                    textView_ManufacturerSpecificBytes.setText("N/A");
+//                                    textView_CalibrationData
+//                                        .setText(calibrationMessage.calibrationData
+//                                            .toString());
                                     break;
 
                                 case CUSTOM_CALIBRATION_RESPONSE:
                                 case CUSTOM_CALIBRATION_UPDATE_SUCCESS:
-                                    textView_CalibrationData.setText("N/A");
-                                    textView_CtfOffset.setText("N/A");
+                                    resultsMap.put("ctfOffset", "N/A");
+                                    resultsMap.put("calibrationData", "N/A");
+//                                    textView_CalibrationData.setText("N/A");
+//                                    textView_CtfOffset.setText("N/A");
 
                                     String bytes = "";
                                     for (byte manufacturerByte : calibrationMessage.manufacturerSpecificData)
                                         bytes += "[" + manufacturerByte + "]";
-
-                                    textView_ManufacturerSpecificBytes.setText(bytes);
+                                    resultsMap.put("manufacturerSpecificBytes", String.valueOf(bytes));
+//                                    textView_ManufacturerSpecificBytes.setText(bytes);
                                     break;
 
                                 case CTF_ZERO_OFFSET:
-                                    textView_ManufacturerSpecificBytes.setText("N/A");
-                                    textView_CalibrationData.setText("N/A");
-                                    textView_CtfOffset.setText(calibrationMessage.ctfOffset
-                                        .toString());
+                                    resultsMap.put("manufacturerSpecificBytes", "N/A");
+//                                    textView_ManufacturerSpecificBytes.setText("N/A");
+                                    resultsMap.put("calibrationData", "N/A");
+//                                    textView_CalibrationData.setText("N/A");
+                                    resultsMap.put("ctfOffset", String.valueOf(calibrationMessage.ctfOffset));
+//                                    textView_CtfOffset.setText(calibrationMessage.ctfOffset
+//                                        .toString());
                                     break;
                                 case UNRECOGNIZED:
-                                    Toast.makeText(Activity_BikePowerSampler.this,
-                                        "Failed: UNRECOGNIZED. PluginLib Upgrade Required?",
-                                        Toast.LENGTH_SHORT).show();
+                                    resultsMap.put("toastMessage", "Failed: UNRECOGNIZED. PluginLib Upgrade Required?");
+//                                    Toast.makeText(Activity_BikePowerSampler.this,
+//                                        "Failed: UNRECOGNIZED. PluginLib Upgrade Required?",
+//                                        Toast.LENGTH_SHORT).show();
                                 default:
                                     break;
                             }
@@ -891,7 +903,9 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+                            powerEstTimestamp = estTimestamp;
+                            resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
 
                             String autoZeroUiString;
                             switch (autoZeroStatus)
@@ -905,55 +919,55 @@ public class Activity_BikePowerSampler extends Activity
                                     autoZeroUiString = "N/A";
                                     break;
                             }
-
-                            textView_AutoZeroStatus.setText(autoZeroUiString);
+                            resultsMap.put("autoZeroStatus", String.valueOf(autoZeroUiString));
+//                            textView_AutoZeroStatus.setText(autoZeroUiString);
                         }
                     });
                 }
             });
 
-            pwrPcc.subscribeCrankParametersEvent(new ICrankParametersReceiver()
-            {
-                @Override
-                public void onNewCrankParameters(
-                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
-                    final CrankParameters crankParameters)
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-                            textView_CrankLengthStatus.setText(crankParameters
-                                .getCrankLengthStatus().toString());
-                            textView_SensorSoftwareMismatchStatus.setText(crankParameters
-                                .getSensorSoftwareMismatchStatus().toString());
-                            textView_SensorAvailabilityStatus.setText(crankParameters
-                                .getSensorAvailabilityStatus().toString());
-                            textView_CustomCalibrationStatus.setText(crankParameters
-                                .getCustomCalibrationStatus().toString());
-                            textView_AutoCrankLengthSupport.setText(String
-                                .valueOf(crankParameters.isAutoCrankLengthSupported()));
-
-                            switch (crankParameters.getCrankLengthStatus())
-                            {
-                                case INVALID_CRANK_LENGTH:
-                                    textView_FullCrankLength.setText("Invalid");
-                                    break;
-                                case DEFAULT_USED:
-                                case SET_AUTOMATICALLY:
-                                case SET_MANUALLY:
-                                    textView_FullCrankLength.setText(crankParameters
-                                        .getFullCrankLength() + "mm");
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    });
-                }
-            });
+//            pwrPcc.subscribeCrankParametersEvent(new ICrankParametersReceiver()
+//            {
+//                @Override
+//                public void onNewCrankParameters(
+//                    final long estTimestamp, final EnumSet<EventFlag> eventFlags,
+//                    final CrankParameters crankParameters)
+//                {
+//                    runOnUiThread(new Runnable()
+//                    {
+//                        @Override
+//                        public void run()
+//                        {
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+//                            textView_CrankLengthStatus.setText(crankParameters
+//                                .getCrankLengthStatus().toString());
+//                            textView_SensorSoftwareMismatchStatus.setText(crankParameters
+//                                .getSensorSoftwareMismatchStatus().toString());
+//                            textView_SensorAvailabilityStatus.setText(crankParameters
+//                                .getSensorAvailabilityStatus().toString());
+//                            textView_CustomCalibrationStatus.setText(crankParameters
+//                                .getCustomCalibrationStatus().toString());
+//                            textView_AutoCrankLengthSupport.setText(String
+//                                .valueOf(crankParameters.isAutoCrankLengthSupported()));
+//
+//                            switch (crankParameters.getCrankLengthStatus())
+//                            {
+//                                case INVALID_CRANK_LENGTH:
+//                                    textView_FullCrankLength.setText("Invalid");
+//                                    break;
+//                                case DEFAULT_USED:
+//                                case SET_AUTOMATICALLY:
+//                                case SET_MANUALLY:
+//                                    textView_FullCrankLength.setText(crankParameters
+//                                        .getFullCrankLength() + "mm");
+//                                    break;
+//                                default:
+//                                    break;
+//                            }
+//                        }
+//                    });
+//                }
+//            });
 
             pwrPcc
                 .subscribeManufacturerIdentificationEvent(new IManufacturerIdentificationReceiver()
@@ -968,12 +982,16 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-
-                            textView_hardwareRevision.setText(String
-                                .valueOf(hardwareRevision));
-                            textView_manufacturerID.setText(String.valueOf(manufacturerID));
-                            textView_modelNumber.setText(String.valueOf(modelNumber));
+                            powerEstTimestamp = estTimestamp;
+                            resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+                            resultsMap.put("hardwareRevision", String.valueOf(hardwareRevision));
+//                            textView_hardwareRevision.setText(String
+//                                .valueOf(hardwareRevision));
+                            resultsMap.put("manufacturerID", String.valueOf(manufacturerID));
+//                            textView_manufacturerID.setText(String.valueOf(manufacturerID));
+                            resultsMap.put("modelNumber", String.valueOf(modelNumber));
+//                            textView_modelNumber.setText(String.valueOf(modelNumber));
                         }
                     });
                 }
@@ -991,23 +1009,29 @@ public class Activity_BikePowerSampler extends Activity
                         @Override
                         public void run()
                         {
-                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-
-                            textView_mainSoftwareRevision.setText(String
-                                .valueOf(mainSoftwareRevision));
+                            powerEstTimestamp = estTimestamp;
+                            resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
+//                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+                            resultsMap.put("mainSoftwareRevision", String.valueOf(mainSoftwareRevision));
+//                            textView_mainSoftwareRevision.setText(String
+//                                .valueOf(mainSoftwareRevision));
 
                             if (supplementalSoftwareRevision == -2)
                                 // Plugin Service installed does not support supplemental revision
-                                textView_supplementalSoftwareRevision.setText("?");
+//                                textView_supplementalSoftwareRevision.setText("?");
+                                resultsMap.put("supplementalSoftwareRevision", "?");
                             else if (supplementalSoftwareRevision == 0xFF)
                                 // Invalid supplemental revision
-                                textView_supplementalSoftwareRevision.setText("");
+//                                textView_supplementalSoftwareRevision.setText("");
+                                resultsMap.put("supplementalSoftwareRevision", "");
                             else
                                 // Valid supplemental revision
-                                textView_supplementalSoftwareRevision.setText(", " + String
-                                    .valueOf(supplementalSoftwareRevision));
+//                                textView_supplementalSoftwareRevision.setText(", " + String
+//                                    .valueOf(supplementalSoftwareRevision));
+                                resultsMap.put("mainSoftwareRevision", String.valueOf(supplementalSoftwareRevision));
 
-                            textView_serialNumber.setText(String.valueOf(serialNumber));
+                            resultsMap.put("serialNumber", String.valueOf(serialNumber));
+//                            textView_serialNumber.setText(String.valueOf(serialNumber));
                         }
                     });
                 }
@@ -1029,14 +1053,21 @@ public class Activity_BikePowerSampler extends Activity
                                         @Override
                                         public void run()
                                         {
-                                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
-
-                                            textView_CumulativeOperatingTime.setText(String.valueOf(cumulativeOperatingTime) + "s");
-                                            textView_BatteryVoltage.setText(String.valueOf(batteryVoltage) + "V");
-                                            textView_BatteryStatus.setText(batteryStatus.toString());
-                                            textView_CumulativeOperatingTimeResolution.setText(String.valueOf(cumulativeOperatingTimeResolution) + "s");
-                                            textView_NumberOfBatteries.setText(String.valueOf(numberOfBatteries));
-                                            textView_BatteryIdentifier.setText(String.valueOf(batteryIdentifier));
+                                            powerEstTimestamp = estTimestamp;
+                                            resultsMap.put("powerEstTimestamp", String.valueOf(powerEstTimestamp));
+//                                            textView_EstTimestamp.setText(String.valueOf(estTimestamp));
+                                            resultsMap.put("cumulativeOperatingTime", String.valueOf(cumulativeOperatingTime));
+//                                            textView_CumulativeOperatingTime.setText(String.valueOf(cumulativeOperatingTime) + "s");
+                                            resultsMap.put("batteryVoltage", String.valueOf(batteryVoltage));
+//                                            textView_BatteryVoltage.setText(String.valueOf(batteryVoltage) + "V");
+                                            resultsMap.put("batteryStatus", String.valueOf(batteryStatus));
+//                                            textView_BatteryStatus.setText(batteryStatus.toString());
+                                            resultsMap.put("cumulativeOperatingTimeResolution", String.valueOf(cumulativeOperatingTimeResolution));
+//                                            textView_CumulativeOperatingTimeResolution.setText(String.valueOf(cumulativeOperatingTimeResolution) + "s");
+                                            resultsMap.put("numberOfBatteries", String.valueOf(numberOfBatteries));
+//                                            textView_NumberOfBatteries.setText(String.valueOf(numberOfBatteries));
+                                            resultsMap.put("batteryIdentifier", String.valueOf(batteryIdentifier));
+//                                            textView_BatteryIdentifier.setText(String.valueOf(batteryIdentifier));
                                         }
                                     });
                             }
@@ -1054,7 +1085,8 @@ public class Activity_BikePowerSampler extends Activity
                 @Override
                 public void run()
                 {
-                    textView_status.setText(pwrPcc.getDeviceName() + ": " + newDeviceState);
+                    resultsMap.put("powerStatus", pwrPcc.getDeviceName() + ": " + newDeviceState);
+//                    textView_status.setText(pwrPcc.getDeviceName() + ": " + newDeviceState);
                 }
             });
         }
@@ -1164,15 +1196,18 @@ public class Activity_BikePowerSampler extends Activity
                             switch(requestStatus)
                             {
                                 case SUCCESS:
-                                    Toast.makeText(Activity_BikePowerSampler.this, "Request Successfully Sent", Toast.LENGTH_SHORT).show();
+                                    resultsMap.put("toastMessage", "Request Successfully Sent");
+//                                    Toast.makeText(Activity_BikePowerSampler.this, "Request Successfully Sent", Toast.LENGTH_SHORT).show();
                                     break;
                                 case FAIL_PLUGINS_SERVICE_VERSION:
-                                    Toast.makeText(Activity_BikePowerSampler.this,
-                                        "Plugin Service Upgrade Required?",
-                                        Toast.LENGTH_SHORT).show();
+                                    resultsMap.put("toastMessage", "Plugin Service Upgrade Required?");
+//                                    Toast.makeText(Activity_BikePowerSampler.this,
+//                                        "Plugin Service Upgrade Required?",
+//                                        Toast.LENGTH_SHORT).show();
                                     break;
                                 default:
-                                    Toast.makeText(Activity_BikePowerSampler.this, "Request Failed to be Sent", Toast.LENGTH_SHORT).show();
+                                    resultsMap.put("toastMessage", "Request Failed to be Sent");
+//                                    Toast.makeText(Activity_BikePowerSampler.this, "Request Failed to be Sent", Toast.LENGTH_SHORT).show();
                                     break;
                             }
                         }
@@ -1180,56 +1215,57 @@ public class Activity_BikePowerSampler extends Activity
             }
         };
 
-        button_requestManualCalibration.setOnClickListener(
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    boolean submitted = pwrPcc.requestManualCalibration(requestFinishedReceiver);
 
-                    if(!submitted)
-                        Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
-                }
-            });
+//        button_requestManualCalibration.setOnClickListener(
+//            new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    boolean submitted = pwrPcc.requestManualCalibration(requestFinishedReceiver);
+//
+//                    if(!submitted)
+//                        Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
-        button_setAutoZero.setOnClickListener(
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_BikePowerSampler.this);
-                    builder.setMessage("Enable or Disable Auto-Zero?");
-                    builder.setPositiveButton("Enable", new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            boolean submitted = pwrPcc.requestSetAutoZero(true, requestFinishedReceiver);
-
-                            if(!submitted)
-                                Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
-
-                            dialog.cancel();
-                        }
-                    });
-                    builder.setNegativeButton("Disable", new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            boolean submitted = pwrPcc.requestSetAutoZero(false, requestFinishedReceiver);
-
-                            if(!submitted)
-                                Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
-
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
-                }
-            });
+//        button_setAutoZero.setOnClickListener(
+//            new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_BikePowerSampler.this);
+//                    builder.setMessage("Enable or Disable Auto-Zero?");
+//                    builder.setPositiveButton("Enable", new DialogInterface.OnClickListener()
+//                    {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which)
+//                        {
+//                            boolean submitted = pwrPcc.requestSetAutoZero(true, requestFinishedReceiver);
+//
+//                            if(!submitted)
+//                                Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
+//
+//                            dialog.cancel();
+//                        }
+//                    });
+//                    builder.setNegativeButton("Disable", new DialogInterface.OnClickListener()
+//                    {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which)
+//                        {
+//                            boolean submitted = pwrPcc.requestSetAutoZero(false, requestFinishedReceiver);
+//
+//                            if(!submitted)
+//                                Toast.makeText(Activity_BikePowerSampler.this, "Request Could not be Made", Toast.LENGTH_SHORT).show();
+//
+//                            dialog.cancel();
+//                        }
+//                    });
+//                    builder.show();
+//                }
+//            });
 
 //        button_requestCrankParameters.setOnClickListener(
 //            new View.OnClickListener()
@@ -1462,51 +1498,53 @@ public class Activity_BikePowerSampler extends Activity
 //        textView_NumberOfBatteries.setText("---");
 //        textView_BatteryIdentifier.setText("---");
 
-        Intent intent = getIntent();
-        if (intent.hasExtra(Activity_MultiDeviceSearchSampler.EXTRA_KEY_MULTIDEVICE_SEARCH_RESULT))
-        {
-            // device has already been selected through the multi-device search
-            MultiDeviceSearchResult result = intent
-                .getParcelableExtra(Activity_MultiDeviceSearchSampler.EXTRA_KEY_MULTIDEVICE_SEARCH_RESULT);
-            releaseHandle = AntPlusBikePowerPcc.requestAccess(this, result.getAntDeviceNumber(), 0,
-                mResultReceiver, mDeviceStateChangeReceiver);
-        } else
-        {
-            // starts the plugins UI search
-            releaseHandle = AntPlusBikePowerPcc.requestAccess(this, this, mResultReceiver,
+//        Intent intent = getIntent();
+//        if (intent.hasExtra(Activity_MultiDeviceSearchSampler.EXTRA_KEY_MULTIDEVICE_SEARCH_RESULT))
+//        {
+//            // device has already been selected through the multi-device search
+//            MultiDeviceSearchResult result = intent
+//                .getParcelableExtra(Activity_MultiDeviceSearchSampler.EXTRA_KEY_MULTIDEVICE_SEARCH_RESULT);
+//            releaseHandle = AntPlusBikePowerPcc.requestAccess(this, result.getAntDeviceNumber(), 0,
+//                mResultReceiver, mDeviceStateChangeReceiver);
+//        } else
+//        {
+//            // starts the plugins UI search
+//            releaseHandle = AntPlusBikePowerPcc.requestAccess(this, this, mResultReceiver,
+//                mDeviceStateChangeReceiver);
+//        }
+        releaseHandle = AntPlusBikePowerPcc.requestAccess(activity, cont, mResultReceiver,
                 mDeviceStateChangeReceiver);
-        }
 
     }
 
     }
 
-    @Override
-    protected void onDestroy()
-    {
-        releaseHandle.close();
-        super.onDestroy();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_heart_rate, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch(item.getItemId())
-        {
-            case R.id.menu_reset:
-                resetPcc();
-                textView_status.setText("Resetting...");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-}
+//    @Override
+//    protected void onDestroy()
+//    {
+//        releaseHandle.close();
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu)
+//    {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.activity_heart_rate, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item)
+//    {
+//        switch(item.getItemId())
+//        {
+//            case R.id.menu_reset:
+//                resetPcc();
+//                textView_status.setText("Resetting...");
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+//}
