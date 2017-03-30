@@ -2,7 +2,8 @@
 <resources>
     <string name="app_name">Ant+ Listener</string>
     <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
+    <string name="button_connect">Connect Spd Cad</string>
+    <string name="button_powerConnect">Connect Power</string>
     <string name="button_listen">Listen</string>
     <string name="button_close">Close</string>
 </resources>
