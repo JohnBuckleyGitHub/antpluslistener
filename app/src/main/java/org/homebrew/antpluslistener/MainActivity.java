@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         tv_power = (TextView)findViewById(R.id.textView_Status6);
 //        tv_timeStampLast = (TextView)findViewById(R.id.textView_Status6);
         tv_torque = (TextView)findViewById(R.id.textView_Status7);
-//        tv_cumrev = (TextView)findViewById(R.id.textView_Status7);
-//        tv_cadTimeStamp = (TextView)findViewById(R.id.textView_Status8);
         tv_torqueSource = (TextView)findViewById(R.id.textView_Status9);
         tv_cadCumrev = (TextView)findViewById(R.id.textView_Status10);
 //        tv_cadCumrev = (TextView)findViewById(R.id.textView_Status10);
