@@ -26,16 +26,23 @@ public class BikeSpeedDistanceSampler {
     AntPlusBikeCadencePcc bcPcc = null;
     PccReleaseHandle<AntPlusBikeCadencePcc> bcReleaseHandle = null;
     public HashMap<String, String> resultsMap = new HashMap<>();
-    public double convertValue = 0;
+    public BigDecimal tenBillion = new BigDecimal("10000000000");
+//    public double convertValue = 0;
     public long spdEstTimestamp = 0;
-    public double spdSysTimestamp = ((double)System.currentTimeMillis())/1000;
+    public long spdSysTimestamp = System.currentTimeMillis();
+//    public double spdSysTimestamp = ((double)System.currentTimeMillis())/1000;
     public EnumSet<EventFlag> spdEventFlags = null;
-    public double spdTimestampOfLastEvent = 0;
+//    public BigDecimal spdTimestampOfLastEvent = new BigDecimal("0.0000");
+        public long spdTimestampOfLastEvent = 0;
+    //    public double spdTimestampOfLastEvent = 0;
     public long spdCumulativeRevolutions = 0;
-    public double cadSysTimestamp = ((double)System.currentTimeMillis())/1000;
+    public long cadSysTimestamp = System.currentTimeMillis();
+//    public double cadSysTimestamp = ((double)System.currentTimeMillis())/1000;
     public long cadEstTimestamp = 0;
     public EnumSet<EventFlag> cadEventFlags = null;
-    public double cadTimestampOfLastEvent = 0;
+//    public BigDecimal cadTimestampOfLastEvent = new BigDecimal("0.0000");
+    public long cadTimestampOfLastEvent = 0;
+//    public double cadTimestampOfLastEvent = 0;
     public long cadCumulativeRevolutions = 0;
 
     android.app.Activity activity = new android.app.Activity();
@@ -70,19 +77,20 @@ public class BikeSpeedDistanceSampler {
             bsdPcc.subscribeRawSpeedAndDistanceDataEvent(new IRawSpeedAndDistanceDataReceiver()
             {
                 @Override
-                public void onNewRawSpeedAndDistanceData(final long FestTimestamp,
-                                                         final EnumSet<EventFlag> FeventFlags,
-                                                         final BigDecimal FtimestampOfLastEvent, final long FcumulativeRevolutions) {
+                public void onNewRawSpeedAndDistanceData(final long estTimestamp,
+                                                         final EnumSet<EventFlag> eventFlags,
+                                                         final BigDecimal timestampOfLastEvent, final long cumulativeRevolutions) {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            convertValue = (double) System.currentTimeMillis();
-                            spdSysTimestamp = convertValue/1000;
-//                            spdSysTimestamp = (System.currentTimeMillis()).doubleValue().longValue();
-                            spdEstTimestamp = FestTimestamp;
-                            spdEventFlags = FeventFlags;
-                            spdTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
-                            spdCumulativeRevolutions = FcumulativeRevolutions;
+//                            convertValue = (double) System.currentTimeMillis();
+//                            spdSysTimestamp = convertValue/1000;
+                            spdSysTimestamp = System.currentTimeMillis();
+                            spdEstTimestamp = estTimestamp;
+                            spdEventFlags = eventFlags;
+                            spdTimestampOfLastEvent = (timestampOfLastEvent.multiply(tenBillion)).longValue();
+//                            spdTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
+                            spdCumulativeRevolutions = cumulativeRevolutions;
                             resultsMap.put("spdSysTimestamp", String.valueOf(spdSysTimestamp));
                             resultsMap.put("spdEstTimestamp", String.valueOf(spdEstTimestamp));
                             resultsMap.put("spdEventFlags", spdEventFlags.toString());
@@ -117,19 +125,20 @@ public class BikeSpeedDistanceSampler {
                                             bcPcc = result;
                                             bcPcc.subscribeRawCadenceDataEvent(new AntPlusBikeCadencePcc.IRawCadenceDataReceiver() {
                                                 @Override
-                                                public void onNewRawCadenceData(final long FestTimestamp,
-                                                                                final EnumSet<EventFlag> FeventFlags, final BigDecimal FtimestampOfLastEvent,
-                                                                                final long FcumulativeRevolutions) {
+                                                public void onNewRawCadenceData(final long estTimestamp,
+                                                                                final EnumSet<EventFlag> eventFlags, final BigDecimal timestampOfLastEvent,
+                                                                                final long cumulativeRevolutions) {
                                                     activity.runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            convertValue = (double)(System.currentTimeMillis());
-                                                            cadSysTimestamp = convertValue/1000;
-//                                                            cadSysTimestamp = System.currentTimeMillis();
-                                                            cadEstTimestamp = FestTimestamp;
-                                                            cadEventFlags = FeventFlags;
-                                                            cadTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
-                                                            cadCumulativeRevolutions = FcumulativeRevolutions;
+//                                                            convertValue = (double)(System.currentTimeMillis());
+//                                                            cadSysTimestamp = convertValue/1000;
+                                                            cadSysTimestamp = System.currentTimeMillis();
+                                                            cadEstTimestamp = estTimestamp;
+                                                            cadEventFlags = eventFlags;
+                                                            cadTimestampOfLastEvent = (timestampOfLastEvent.multiply(tenBillion)).longValue();
+//                                                            cadTimestampOfLastEvent = FtimestampOfLastEvent.doubleValue();
+                                                            cadCumulativeRevolutions = cumulativeRevolutions;
                                                             resultsMap.put("cadSysTimestamp", String.valueOf(cadEstTimestamp));
                                                             resultsMap.put("cadEstTimestamp", String.valueOf(cadEstTimestamp));
                                                             resultsMap.put("cadEventFlags", cadEventFlags.toString());
