@@ -13,18 +13,24 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send"
+        android:text="@string/button_connect"
         android:onClick="activateSearch" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_powerConnect"
+        android:onClick="activatePowerSearch" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_listen"
         android:onClick="momentaryListen" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_close"
-        android:onClick="closeThreads" />
+        android:onClick="closeButton"
+        android:text="@string/button_close" />
     <TextView
         android:id="@+id/textView_Status"
         android:layout_width="wrap_content"
@@ -74,13 +80,7 @@
         android:text="[status]"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
-    <TextView
-        android:id="@+id/textView_Status8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="[status]"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/textView_Status9"
         android:layout_width="wrap_content"
